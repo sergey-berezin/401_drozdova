@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace ParallelTask.RecognitionLibrary
+namespace ParallelTask
 {
     public class YoloV4Prediction
     {

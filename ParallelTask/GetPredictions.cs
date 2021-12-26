@@ -11,14 +11,15 @@ using System.Collections.Concurrent;
 using System.Collections.Immutable;
 using System.Linq; //для получения файлов из выбранной папки
 
-namespace ParallelTask.RecognitionLibrary
+
+namespace ParallelTask
 {
-    class GetPredictions
+    public class GetPredictions
     {
         const string modelPath = @"E:\Programs\yolov4.onnx";
 
 
-        static readonly string[] classesNames = new string[] { "person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck", "boat", "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat", "dog", "horse", "sheep", "cow", "elephant", "bear", "zebra", "giraffe", "backpack", "umbrella", "handbag", "tie", "suitcase", "frisbee", "skis", "snowboard", "sports ball", "kite", "baseball bat", "baseball glove", "skateboard", "surfboard", "tennis racket", "bottle", "wine glass", "cup", "fork", "knife", "spoon", "bowl", "banana", "apple", "sandwich", "orange", "broccoli", "carrot", "hot dog", "pizza", "donut", "cake", "chair", "sofa", "pottedplant", "bed", "diningtable", "toilet", "tvmonitor", "laptop", "mouse", "remote", "keyboard", "cell phone", "microwave", "oven", "toaster", "sink", "refrigerator", "book", "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush" };
+        static readonly string[] classesNames = { "person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck", "boat", "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat", "dog", "horse", "sheep", "cow", "elephant", "bear", "zebra", "giraffe", "backpack", "umbrella", "handbag", "tie", "suitcase", "frisbee", "skis", "snowboard", "sports ball", "kite", "baseball bat", "baseball glove", "skateboard", "surfboard", "tennis racket", "bottle", "wine glass", "cup", "fork", "knife", "spoon", "bowl", "banana", "apple", "sandwich", "orange", "broccoli", "carrot", "hot dog", "pizza", "donut", "cake", "chair", "sofa", "pottedplant", "bed", "diningtable", "toilet", "tvmonitor", "laptop", "mouse", "remote", "keyboard", "cell phone", "microwave", "oven", "toaster", "sink", "refrigerator", "book", "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush" };
 
         public static void Detections(string directory, CancellationToken token, ConcurrentQueue<Tuple<string, YoloV4Result>> ResultsQueue)
         {
@@ -65,11 +66,6 @@ namespace ParallelTask.RecognitionLibrary
             {
                 tasks[i] = Task.Factory.StartNew(pi =>
                 {
-                    if (token.IsCancellationRequested)
-                    {
-                        return;
-                    }
-
                     int num = (int)pi;
                     var path = images[num];
                     var bitmap = new Bitmap(Image.FromFile(path));
@@ -81,11 +77,21 @@ namespace ParallelTask.RecognitionLibrary
                         var TupleWithResult = Tuple.Create(images[num], detection);
                         ResultsQueue.Enqueue(TupleWithResult);
                     }
-                }, i);
+                }, i, token);
             }
 
-            Task.WaitAll(tasks);
-            sw.Stop();
+            try
+            {
+                Task.WaitAll(tasks);
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                sw.Stop();
+            }
         }
     }
 }

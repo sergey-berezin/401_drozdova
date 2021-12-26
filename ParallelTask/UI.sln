@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParallelTask", "ParallelTask.csproj", "{AC773D0E-AA22-4356-89DE-64A1C46172A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "..\WpfApp\WpfApp.csproj", "{A5A42175-6ACB-4827-985E-D5A8E546A36E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC773D0E-AA22-4356-89DE-64A1C46172A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC773D0E-AA22-4356-89DE-64A1C46172A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC773D0E-AA22-4356-89DE-64A1C46172A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC773D0E-AA22-4356-89DE-64A1C46172A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5A42175-6ACB-4827-985E-D5A8E546A36E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5A42175-6ACB-4827-985E-D5A8E546A36E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5A42175-6ACB-4827-985E-D5A8E546A36E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5A42175-6ACB-4827-985E-D5A8E546A36E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {03397CD7-D8C0-46A0-A243-1035A3DB7566}
+	EndGlobalSection
+EndGlobal

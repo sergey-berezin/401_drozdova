@@ -1,4 +1,4 @@
-﻿namespace ParallelTask.RecognitionLibrary
+﻿namespace ParallelTask
 {
     public class YoloV4Result
     {

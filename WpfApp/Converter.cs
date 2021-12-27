@@ -40,4 +40,25 @@ namespace WpfApp
             throw new NotImplementedException();
         }
     }
+
+    public static class ImageOperations 
+    {
+        public static byte[] ToByteArray(this Image image, ImageFormat format)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                image.Save(memoryStream, format);
+                return memoryStream.ToArray();
+            }
+        }
+
+        public static Image FromByteArray(byte[] imageData)
+        {
+            using (MemoryStream memstr = new MemoryStream(imageData))
+            {
+                Image img = Image.FromStream(memstr);
+                return img;
+            }
+        }
+    }
 }

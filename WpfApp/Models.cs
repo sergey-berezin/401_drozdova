@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using System.IO;
+using System.Numerics;
 using ParallelTask;
 
 
@@ -6,13 +8,22 @@ namespace WpfApp
 {
     public class ImageProxy
     {
-        public string Name { get; set; }
+        public string Name { get; }
         public Bitmap ImageData { get; set; }
+        public int Hash { get; }
 
         public ImageProxy(string name, string image_path)
         {
             Name = name;
+            Hash = new BigInteger(File.ReadAllBytes(image_path)).GetHashCode();
             ImageData = new Bitmap(Image.FromFile(image_path));
+        }
+
+        public ImageProxy(Database.Image image_db)
+        {
+            Name = image_db.Name;
+            Hash = image_db.Hash;
+            ImageData = new Bitmap(ImageOperations.FromByteArray(image_db.Data));
         }
     }
 

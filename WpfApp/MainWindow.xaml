@@ -46,6 +46,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="1"
                         Margin ="5"
@@ -55,6 +57,10 @@
                         Margin ="5"
                         Content="Cancel"
                         Command="{Binding CancelCommand}"/>
+                <Button Grid.Column="5"
+                        Margin ="5"
+                        Content="Remove"
+                        Command="{Binding RemoveCommand}"/>
             </Grid>
         </Grid>
     </Grid>    

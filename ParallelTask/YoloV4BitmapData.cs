@@ -2,7 +2,7 @@
 using Microsoft.ML.Transforms.Image;
 using System.Drawing;
 
-namespace ParallelTask.RecognitionLibrary
+namespace ParallelTask
 {
     public class YoloV4BitmapData
     {
